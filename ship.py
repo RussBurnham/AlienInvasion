@@ -48,23 +48,24 @@ class Ship:
             self.y -= self.settings.ship_speed
         if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
             self.y += self.settings.ship_speed
+        
+        angle_changed = False
         if self.rotating_right:
             self.angle -= self.settings.ship_rotation_speed
+            angle_changed = True
         if self.rotating_left:
             self.angle += self.settings.ship_rotation_speed
+            angle_changed = True
+
+        if angle_changed:
+            self.rotated_image = pygame.transform.rotate(self.image, self.angle)
+            self.rotated_rect = self.rotated_image.get_rect()
+            self.rotated_rect.center = self.rect.center
         
         # Update rect object from self.x and self.y
         self.rect.x = self.x
         self.rect.y = self.y
 
-        # Update the angle of the ship
-        self.rotated_image = pygame.transform.rotate(self.image, self.angle)
-        self.rotated_rect = self.rotated_image.get_rect()
-        self.rotated_rect.center = self.rect.center
-
     def blitme(self):
         '''Draw the ship at its current location.'''
-        self.screen.blit(self.image, self.rect)
-
-        # Change the blit call to blit the rotated image.
         self.screen.blit(self.rotated_image, self.rect)

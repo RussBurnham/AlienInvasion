@@ -18,9 +18,6 @@ class Settings:
         self.bullet_color = (255, 201, 14)
         self.bullets_allowed = 10
         # Ship rotation settings.
-        self.ship_rotation_speed = 1.5
-        self.ship_image_original = pygame.image.load('C:/Users/User/Pictures/ship.bmp')
-        self.ship_image = self.ship_image_original
-        self.ship_rect = self.ship_image.get_rect()
-        self.ship_angle = 90
+        self.ship_rotation_speed = 2.0
+
 
