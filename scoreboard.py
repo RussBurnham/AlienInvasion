@@ -1,3 +1,4 @@
+from pygame import transform
 import pygame.font
 from pygame.sprite import Group
 from ship import Ship
@@ -69,7 +70,11 @@ class Scoreboard:
         self.ships = Group()
         for ship_number in range(self.stats.ships_left):
             ship = Ship(self.ai_game)
-            ship.rect.x = 10 + ship_number * ship.rect.width
+            ship_image = pygame.transform.scale(ship.image, (43, 49))
+            ship_rect = ship_image.get_rect()
+            ship.image = ship_image
+            ship.rect = ship_rect
+            ship.rect.x = 10 + ship_number * (ship.rect.width + 10)
             ship.rect.y = 10
             self.ships.add(ship)
 
