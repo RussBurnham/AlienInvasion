@@ -5,6 +5,7 @@ from settings import Settings
 from game_stats import GameStats
 from scoreboard import Scoreboard
 from button import Button
+from titleandinstructions import Title, Instructions
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -41,8 +42,13 @@ class AlienInvasion:
         # Start Alien Invasion game in an inactive state.
         self.game_active = False
 
+        # Make the Title and Instructions.
+        self.title = Title(self, "ALIEN INVASION")
+        self.instructions = Instructions(self, 
+        "instructions:\n\n-Q to quit\n-UP DOWN LEFT RIGHT to control ship\n-SPACEBAR to shoot\n-X and C to rotate\n-click Play to begin\n\ndestroy the alien army...\n\nsurvive...")
+
         # Make the Play button.
-        self.play_button = Button(self, "Play...")
+        self.play_button = Button(self, "Play")
 
     def run_game(self):
         '''Start the main loop for the game.'''
@@ -187,6 +193,8 @@ class AlienInvasion:
         # Draw the play button if the game is inactive.
         if not self.game_active:
             self.play_button.draw_button()
+            self.title.blitme()
+            self.instructions.blitme()
         # Make the most recently drawn screen visible.
         pygame.display.flip()           
 

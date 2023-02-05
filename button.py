@@ -1,7 +1,7 @@
 import pygame.font
 
 class Button:
-    '''A class to build buttons for the game.'''
+    '''A class for the play button.'''
 
     def __init__(self, ai_game, msg):
         '''Initialize button attributes.'''
@@ -9,7 +9,7 @@ class Button:
         self.screen_rect = self.screen.get_rect()
 
         # Set the dimensions and properties of the button.
-        self.width, self.height = 250, 60
+        self.width, self.height = 120, 65
         self.button_color = (0, 0, 0)
         self.text_color = (188, 245, 69)
         self.font = pygame.font.Font('C:/Users/User/3D Objects/code2.ttf', 36)
