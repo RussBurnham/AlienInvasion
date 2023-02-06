@@ -9,6 +9,7 @@ class Stars(Sprite):
         self.screen = ai_game.screen
         self.settings = ai_game.settings
 
+        # Loading 4 different saved files, selected at random.
         self.image = pygame.image.load('C:/Users/User/Pictures/star{}.bmp'.format(randint(1, 4)))
         self.rect = self.image.get_rect()
 

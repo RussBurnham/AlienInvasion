@@ -10,6 +10,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from stars import StarField
+from extras import Explosion, Music
 
 class AlienInvasion:
     '''Overall class to manage game assets and behavior.'''
@@ -33,6 +34,8 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self.stars = StarField(self)
+        self.explosion = Explosion(self)
+        self.music = Music()
 
         self._create_fleet()
 
@@ -54,6 +57,7 @@ class AlienInvasion:
         '''Start the main loop for the game.'''
         while True:
             self._check_events()
+            self.music
             
             if self.game_active:
                 self.ship.update()
@@ -86,6 +90,13 @@ class AlienInvasion:
         if collisions:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
+                for alien in aliens:
+                    self.explosion.play()
+                    self.explosion.rect.x = alien.rect.x
+                    self.explosion.rect.y = alien.rect.y
+                    self.explosion.blitme()
+                    pygame.display.update()
+                    pygame.time.wait(50)
             self.sb.prep_score()
             self.sb.check_high_score()
 
