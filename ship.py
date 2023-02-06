@@ -41,7 +41,7 @@ class Ship(Sprite):
     
     def update(self):
         '''Update the ship's position based on the movement flags.'''
-        # Update the ship's x value, not the rect.
+        # Update the ship's x and y value for movement, not the rect.
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
@@ -51,6 +51,7 @@ class Ship(Sprite):
         if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
             self.y += self.settings.ship_speed
         
+        # Update the ship's angle. Use an angle_changed flag to rotate the image.
         angle_changed = False
         if self.rotating_right:
             self.angle -= self.settings.ship_rotation_speed

@@ -20,16 +20,14 @@ class Bullet(Sprite):
         # Store the bullet's position as a float.
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
-        self.angle = ai_game.ship.angle + 90
-        self.speed = self.settings.bullet_speed
 
-        self.x += math.cos(math.radians(self.angle)) * self.speed
-        self.y -= math.sin(math.radians(self.angle)) * self.speed
+        # Store the angle of the bullet + 90degrees to shoot vertically
+        self.angle = ai_game.ship.angle + 90
 
     def update(self):
         '''Move the bullet in the direction of the rotated ship.'''
-        self.x += math.cos(math.radians(self.angle)) * self.speed
-        self.y -= math.sin(math.radians(self.angle)) * self.speed
+        self.x += math.cos(math.radians(self.angle)) * self.settings.bullet_speed
+        self.y -= math.sin(math.radians(self.angle)) * self.settings.bullet_speed
         # Update the rect position.
         self.rect.x = self.x
         self.rect.y = self.y

@@ -65,16 +65,15 @@ class Scoreboard:
         self.level_rect.top = self.score_rect.bottom + 10
     
     def prep_ships(self):
-        '''Show how many ships are left.'''
+        '''Show how many ships are left on top left of screen.'''
         self.ships = Group()
         for ship_number in range(self.stats.ships_left):
             ship = Ship(self.ai_game)
+            # Transform the ship to smaller image for asthetics.
             ship_image = pygame.transform.scale(ship.image, (43, 49))
             ship_rect = ship_image.get_rect()
-            ship.image = ship_image
-            ship.rect = ship_rect
-            ship.rect.x = 10 + ship_number * (ship.rect.width + 10)
-            ship.rect.y = 10
+            ship.image, ship.rect = ship_image, ship_rect
+            ship.rect.x = 20 + ship_number * (ship.rect.width + 20)
             self.ships.add(ship)
 
     def show_score(self):

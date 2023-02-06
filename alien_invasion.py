@@ -82,6 +82,7 @@ class AlienInvasion:
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
         
+        # Adjusting score for alien-bullet collisions.
         if collisions:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
@@ -89,10 +90,11 @@ class AlienInvasion:
             self.sb.check_high_score()
 
         if not self.aliens:
-            # Destroy existing bullets and create new fleet.
+            # Updates for when entire fleet is destroyed.
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+            self.ship.center_ship()
 
             # Increase level.
             self.stats.level += 1
@@ -105,6 +107,7 @@ class AlienInvasion:
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
 
+        # A while loop with nested loop filling a grid of aliens.
         current_x, current_y = alien_width, alien_height
         while current_y < (self.settings.screen_height - 6 * alien_height):
             while current_x < (self.settings.screen_width - 2 * alien_width):

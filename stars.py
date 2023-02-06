@@ -11,6 +11,8 @@ class Stars(Sprite):
 
         self.image = pygame.image.load('C:/Users/User/Pictures/star{}.bmp'.format(randint(1, 4)))
         self.rect = self.image.get_rect()
+
+        # Randomize where the star is placed on the game screen.
         self.rect.x = randint(0, self.settings.screen_width)
         self.rect.y = randint(0, self.settings.screen_height)
 
@@ -25,6 +27,7 @@ class StarField:
         self.stars = pygame.sprite.Group()
         self.ai_game = ai_game
 
+        # Placing 50 stars in game screen.
         for i in range(50):
             star = Stars(self.ai_game)
             self.stars.add(star)

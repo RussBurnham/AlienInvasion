@@ -16,7 +16,7 @@ class Settings:
         self.bullet_width = 3.5
         self.bullet_height = 10
         self.bullet_color = (255, 201, 14)
-        self.bullets_allowed = 10
+        self.bullets_allowed = 15
         # Alien settings.
         self.fleet_drop_speed = 10
         # Speed up game.
