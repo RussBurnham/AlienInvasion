@@ -1,5 +1,6 @@
 import pygame
 from pygame.sprite import Sprite
+import os
 
 class Ship(Sprite):
     '''A class to manage the ship.'''
@@ -13,7 +14,7 @@ class Ship(Sprite):
         self.angle = 0
 
         # Load the ship image and get its rect.
-        self.image = pygame.image.load('C:/Users/User/Pictures/ship.bmp')
+        self.image = pygame.image.load(os.path.join(os.environ["Pictures"], "ship.bmp"))
         self.rect = self.image.get_rect()
         
         # Start each new ship at the bottom center of the screen.

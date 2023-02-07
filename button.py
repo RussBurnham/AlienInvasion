@@ -1,4 +1,5 @@
 import pygame.font
+import os
 
 class Button:
     '''A class for the play button.'''
@@ -12,7 +13,8 @@ class Button:
         self.width, self.height = 120, 65
         self.button_color = (0, 0, 0)
         self.text_color = (188, 245, 69)
-        self.font = pygame.font.Font('C:/Users/User/3D Objects/code2.ttf', 36)
+        self.font = pygame.font.Font(os.path.join(
+            os.environ["Fonts"], "code2.ttf"), 36)
 
         # Build the button's rect object and center it.
         self.rect = pygame.Rect(0, 0, self.width, self.height)
@@ -23,8 +25,7 @@ class Button:
     
     def _prep_msg(self, msg):
         '''Turn msg into a rendered image and center text on the button.'''
-        self.msg_image = self.font.render(msg, True, self.text_color, 
-            self.button_color)
+        self.msg_image = self.font.render(msg, True, self.text_color, self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
     

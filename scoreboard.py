@@ -2,6 +2,7 @@ from pygame import transform
 import pygame.font
 from pygame.sprite import Group
 from ship import Ship
+import os
 
 class Scoreboard:
     '''A class to report scoring information.'''
@@ -17,7 +18,7 @@ class Scoreboard:
         # Font settings for scoring information.
         self.text_color = (188, 245, 69)
         self.black_fill = (0, 0, 0)
-        self.font = pygame.font.Font('C:/Users/User/3D Objects/code2.ttf', 24)
+        self.font = pygame.font.Font(os.path.join(os.environ["Fonts"], "code2.ttf"), 24)
 
         # Prepare the initial score image.
         self.prep_score()
@@ -29,7 +30,8 @@ class Scoreboard:
         '''Turn the score into a rendered image.'''
         rounded_score = round(self.stats.score, -1)
         score_str = f"score {rounded_score:,}"
-        self.score_image = self.font.render(score_str, True, self.text_color, self.settings.bg_color)
+        self.score_image = self.font.render(score_str, True, 
+            self.text_color, self.settings.bg_color)
 
         # Display the score at the top right of the screen.
         self.score_rect = self.score_image.get_rect()
@@ -40,8 +42,9 @@ class Scoreboard:
         '''Turn the high score into a rendered image.'''
         high_score = round(self.stats.high_score, -1)
         high_score_str = f"high_score {high_score:,}"
-        high_score_font = pygame.font.Font('C:/Users/User/3D Objects/code2.ttf', 28)
-        self.high_score_image = high_score_font.render(high_score_str, True, self.text_color, self.settings.bg_color)
+        high_score_font = pygame.font.Font(os.path.join(os.environ["Fonts"], "code2.ttf"), 28)
+        self.high_score_image = high_score_font.render(high_score_str, 
+            True, self.text_color, self.settings.bg_color)
 
         # Center the high score at the top of the screen.
         self.high_score_rect = self.high_score_image.get_rect()
@@ -58,7 +61,8 @@ class Scoreboard:
         '''Turn the level into a renedered image.'''
         level_str = str(self.stats.level)
         level = f"level {level_str}"
-        self.level_image = self.font.render(level, True, self.text_color, self.settings.bg_color)
+        self.level_image = self.font.render(level, True, 
+            self.text_color, self.settings.bg_color)
 
         # Position the level below the score.
         self.level_rect = self.level_image.get_rect()
@@ -88,12 +92,15 @@ class Scoreboard:
 
     def level_up(self):
         '''Display LEVEL UP when all aliens cleared.'''
-        level_up_font = pygame.font.Font('C:/Users/User/3D Objects/code.ttf', 88)
-        self.level_up_image = level_up_font.render("LEVEL UP!!!", True, self.text_color, self.black_fill)
+        level_up_font = pygame.font.Font(os.path.join(os.environ["Fonts"], 
+            "code.ttf"), 88)
+        self.level_up_image = level_up_font.render("LEVEL UP!!!", True, 
+            self.text_color, self.black_fill)
         self.level_up_rect = self.level_up_image.get_rect()
         self.level_up_rect.center = self.screen_rect.center
         self.screen.blit(self.level_up_image, self.level_up_rect)
-        self.levelup_sound = pygame.mixer.Sound('C:/Users/User/Music/levelup.wav')
+        self.levelup_sound = pygame.mixer.Sound(os.path.join
+            (os.environ["Music"], "levelup.wav"))
         self.levelup_sound.set_volume(0.8)
         self.levelup_sound.play()
         pygame.display.update()

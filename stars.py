@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 from random import randint
+import os
 
 class Stars(Sprite):
     def __init__(self, ai_game):
@@ -10,7 +11,8 @@ class Stars(Sprite):
         self.settings = ai_game.settings
 
         # Loading 4 different saved files, selected at random.
-        self.image = pygame.image.load('C:/Users/User/Pictures/star{}.bmp'.format(randint(1, 4)))
+        self.image = pygame.image.load(os.path.join(os.environ["Pictures"],
+             "star{}.bmp".format(randint(1, 4))))
         self.rect = self.image.get_rect()
 
         # Randomize where the star is placed on the game screen.
