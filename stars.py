@@ -4,6 +4,8 @@ from random import randint
 import os
 
 class Stars(Sprite):
+    '''Creating individual stars.'''
+    
     def __init__(self, ai_game):
         super().__init__()
         '''Initialize and load random saved stars onto background of screen.'''
@@ -11,8 +13,7 @@ class Stars(Sprite):
         self.settings = ai_game.settings
 
         # Loading 4 different saved files, selected at random.
-        self.image = pygame.image.load(os.path.join(os.environ["Pictures"],
-             "star{}.bmp".format(randint(1, 4))))
+        self.image = pygame.image.load(os.path.join(os.environ["Alien_Invasion"], "star{}.bmp".format(randint(1, 4))))
         self.rect = self.image.get_rect()
 
         # Randomize where the star is placed on the game screen.
@@ -25,6 +26,7 @@ class Stars(Sprite):
 
 class StarField:
     '''A class to represent the starfield'''
+    
     def __init__(self, ai_game):
         '''Initialize the starfield'''
         self.stars = pygame.sprite.Group()

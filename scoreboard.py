@@ -18,7 +18,7 @@ class Scoreboard:
         # Font settings for scoring information.
         self.text_color = (188, 245, 69)
         self.black_fill = (0, 0, 0)
-        self.font = pygame.font.Font(os.path.join(os.environ["Fonts"], "code2.ttf"), 24)
+        self.font = pygame.font.Font(os.path.join(os.environ["Alien_Invasion"], "code2.ttf"), 24)
 
         # Prepare the initial score image.
         self.prep_score()
@@ -42,7 +42,7 @@ class Scoreboard:
         '''Turn the high score into a rendered image.'''
         high_score = round(self.stats.high_score, -1)
         high_score_str = f"high_score {high_score:,}"
-        high_score_font = pygame.font.Font(os.path.join(os.environ["Fonts"], "code2.ttf"), 28)
+        high_score_font = pygame.font.Font(os.path.join(os.environ["Alien_Invasion"], "code2.ttf"), 28)
         self.high_score_image = high_score_font.render(high_score_str, 
             True, self.text_color, self.settings.bg_color)
 
@@ -92,8 +92,7 @@ class Scoreboard:
 
     def level_up(self):
         '''Display LEVEL UP when all aliens cleared.'''
-        level_up_font = pygame.font.Font(os.path.join(os.environ["Fonts"], 
-            "code.ttf"), 88)
+        level_up_font = pygame.font.Font(os.path.join(os.environ["Alien_Invasion"], "code.ttf"), 88)
         self.level_up_image = level_up_font.render("LEVEL UP!!!", True, 
             self.text_color, self.black_fill)
         self.level_up_rect = self.level_up_image.get_rect()
