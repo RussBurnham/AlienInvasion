@@ -52,7 +52,7 @@ class AlienInvasion:
         # Make the Title and Instructions.
         self.title = Title(self, "ALIEN INVASION")
         self.instructions = Instructions(self, 
-        "instructions:\n\n-Q to quit\n-UP DOWN LEFT RIGHT to control ship\n-SPACEBAR to shoot\n-X and C to rotate\n-click Play to begin\n\ndestroy the alien army...\n\nsurvive...")
+        "instructions:\n\n-Q to quit\n-UP DOWN LEFT RIGHT to control ship\n-SPACEBAR to shoot\n-D and F to rotate\n-click Play to begin\n\ndestroy the alien army...\n\nsurvive...")
 
         # Make the Play button.
         self.play_button = Button(self, "Play")
@@ -240,6 +240,7 @@ class AlienInvasion:
 
             # Reset game stats.
             self.stats.reset_stats()
+            self.stats.score = 0
             self.sb.prep_score()
             self.sb.prep_level()
             self.sb.prep_ships()
@@ -266,9 +267,9 @@ class AlienInvasion:
             self.ship.moving_up = True
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = True
-        elif event.key == pygame.K_c:
+        elif event.key == pygame.K_f:
             self.ship.rotating_right = True
-        elif event.key == pygame.K_x:
+        elif event.key == pygame.K_d:
             self.ship.rotating_left = True 
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()   
@@ -285,9 +286,9 @@ class AlienInvasion:
             self.ship.moving_up = False 
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = False 
-        elif event.key == pygame.K_c:
+        elif event.key == pygame.K_f:
             self.ship.rotating_right = False
-        elif event.key == pygame.K_x:
+        elif event.key == pygame.K_d:
             self.ship.rotating_left = False
     
     def _fire_bullet(self):

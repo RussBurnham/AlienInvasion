@@ -3,6 +3,7 @@ import os
 
 class Title:
     '''Display the title of the game at the top during pregame.'''
+    
     def __init__(self, ai_game, text):
         '''Initialize Title.'''
         self.screen = ai_game.screen
@@ -12,7 +13,7 @@ class Title:
         self.width, self.height = 825, 100
         self.background_color = (0, 0, 0)
         self.text_color = (188, 245, 69)
-        self.font = pygame.font.Font(os.path.join(os.environ["Fonts"], "code.ttf"), 52)
+        self.font = pygame.font.Font(os.path.join(os.environ["Alien_Invasion"], "code.ttf"), 52)
 
         # Build the title rect object and center it.
         self.rect = pygame.Rect(0, 0, self.width, self.height)
@@ -32,6 +33,7 @@ class Title:
 
 class Instructions:
     '''Display instructions on the left side during pregame.'''
+    
     def __init__(self, ai_game, text):
         '''Attributes of the instructions class.'''
         self.screen = ai_game.screen
@@ -41,7 +43,7 @@ class Instructions:
         self.width, self.height = 380, 315
         self.background_color = (0, 0, 0)
         self.text_color = (188, 245, 69)
-        self.font = pygame.font.Font(os.path.join(os.environ["Fonts"], "code2.ttf"), 24)
+        self.font = pygame.font.Font(os.path.join(os.environ["Alien_Invasion"], "code2.ttf"), 24)
         self.rect = pygame.Rect(0, 0, self.width, self.height)
         self.rect.centerx = self.screen_rect.centerx - 400
         self.rect.centery = self.screen_rect.centery + 50
