@@ -240,6 +240,7 @@ class AlienInvasion:
 
             # Reset game stats.
             self.stats.reset_stats()
+            self.stats.score = 0
             self.sb.prep_score()
             self.sb.prep_level()
             self.sb.prep_ships()
