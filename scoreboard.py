@@ -16,6 +16,7 @@ class Scoreboard:
 
         # Font settings for scoring information.
         self.text_color = (188, 245, 69)
+        self.black_fill = (0, 0, 0)
         self.font = pygame.font.Font('C:/Users/User/3D Objects/code2.ttf', 24)
 
         # Prepare the initial score image.
@@ -82,4 +83,19 @@ class Scoreboard:
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
         self.ships.draw(self.screen)
+
+    # Extra.
+
+    def level_up(self):
+        '''Display LEVEL UP when all aliens cleared.'''
+        level_up_font = pygame.font.Font('C:/Users/User/3D Objects/code.ttf', 88)
+        self.level_up_image = level_up_font.render("LEVEL UP!!!", True, self.text_color, self.black_fill)
+        self.level_up_rect = self.level_up_image.get_rect()
+        self.level_up_rect.center = self.screen_rect.center
+        self.screen.blit(self.level_up_image, self.level_up_rect)
+        self.levelup_sound = pygame.mixer.Sound('C:/Users/User/Music/levelup.wav')
+        self.levelup_sound.set_volume(0.8)
+        self.levelup_sound.play()
+        pygame.display.update()
+        pygame.time.wait(1000)
 

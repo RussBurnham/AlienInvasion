@@ -1,5 +1,6 @@
 import sys
 from time import sleep
+import random
 import pygame
 from settings import Settings
 from game_stats import GameStats
@@ -34,9 +35,12 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self.stars = StarField(self)
-        self.explosion = Explosion(self)
         self.music = Music()
 
+        # Explosion instances.
+        self.explosion1 = Explosion(self, 1)
+        self.explosion2 = Explosion(self, 2)
+    
         self._create_fleet()
 
         # Set the background color.
@@ -91,10 +95,11 @@ class AlienInvasion:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
                 for alien in aliens:
-                    self.explosion.play()
-                    self.explosion.rect.x = alien.rect.x
-                    self.explosion.rect.y = alien.rect.y
-                    self.explosion.blitme()
+                    chosen_explosion = random.choice([self.explosion1, self.explosion2])
+                    chosen_explosion.play()
+                    chosen_explosion.rect.x = alien.rect.x
+                    chosen_explosion.rect.y = alien.rect.y
+                    chosen_explosion.blitme()
                     pygame.display.update()
                     pygame.time.wait(50)
             self.sb.prep_score()
@@ -110,6 +115,7 @@ class AlienInvasion:
             # Increase level.
             self.stats.level += 1
             self.sb.prep_level()
+            self.sb.level_up()
     
     def _create_fleet(self):
         '''Create the fleet of aliens.'''
